@@ -3,6 +3,25 @@
 <mat-dialog-content>
   <form [formGroup]="taskForm" class="task-form">
     <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" placeholder="Ej: Finalizar reporte mensual">
+      <mat-error *ngIf="taskForm.get('title')?.hasError('required')">
+        El título es obligatorio
+      </mat-error>
+      <mat-error *ngIf="taskForm.get('title')?.hasError('minlength')">
+        Mínimo 3 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" rows="3" placeholder="Detalles de la tarea..."></textarea>
+      <mat-error *ngIf="taskForm.get('description')?.hasError('required')">
+        La descripción es obligatoria
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Estado</mat-label>
       <mat-select formControlName="status">
         <mat-option value="PENDING">Pendiente</mat-option>
